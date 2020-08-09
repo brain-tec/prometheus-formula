@@ -2,6 +2,48 @@
 Changelog
 =========
 
+`4.0.0 <https://github.com/saltstack-formulas/prometheus-formula/compare/v3.3.0...v4.0.0>`_ (2020-08-09)
+------------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **libtofs:** “files_switch” mess up the variable exported by “map.jinja” [skip ci] (\ ` <https://github.com/saltstack-formulas/prometheus-formula/commit/5403088>`_\ )
+* **pr:** adopt pr comments (\ ` <https://github.com/saltstack-formulas/prometheus-formula/commit/e4b924a>`_\ )
+
+Code Refactoring
+^^^^^^^^^^^^^^^^
+
+
+* **all:** align to template-formula; add clientlibs feature (\ ` <https://github.com/saltstack-formulas/prometheus-formula/commit/ce5b771>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **gemfile.lock:** add to repo with updated ``Gemfile`` [skip ci] (\ ` <https://github.com/saltstack-formulas/prometheus-formula/commit/da8f6a8>`_\ )
+* **kitchen:** avoid using bootstrap for ``master`` instances [skip ci] (\ ` <https://github.com/saltstack-formulas/prometheus-formula/commit/f63a64d>`_\ )
+* **kitchen:** use ``saltimages`` Docker Hub where available [skip ci] (\ ` <https://github.com/saltstack-formulas/prometheus-formula/commit/9b45ea4>`_\ )
+* **kitchen+travis:** remove ``master-py2-arch-base-latest`` [skip ci] (\ ` <https://github.com/saltstack-formulas/prometheus-formula/commit/d978c50>`_\ )
+* **travis:** add notifications => zulip [skip ci] (\ ` <https://github.com/saltstack-formulas/prometheus-formula/commit/4b5ec2f>`_\ )
+* **workflows/commitlint:** add to repo [skip ci] (\ ` <https://github.com/saltstack-formulas/prometheus-formula/commit/b32d92a>`_\ )
+
+Styles
+^^^^^^
+
+
+* **libtofs.jinja:** use Black-inspired Jinja formatting [skip ci] (\ ` <https://github.com/saltstack-formulas/prometheus-formula/commit/2660b19>`_\ )
+
+BREAKING CHANGES
+^^^^^^^^^^^^^^^^
+
+
+* **all:** The data dictionary is simplified and expanded.
+  Retest your states and update pillar data accordingly.
+  For developer convenience, clientlibs states were introduced.
+  See pillar.example, defaults.yaml, and docs/README.
+
 `3.3.0 <https://github.com/saltstack-formulas/prometheus-formula/compare/v3.2.0...v3.3.0>`_ (2019-12-22)
 ------------------------------------------------------------------------------------------------------------
 
