@@ -89,8 +89,8 @@ prometheus-archive-install-{{ name }}-file-directory:
     - group: {{ name }}
     - mode: '0755'
     - require:
-      - user: prometheus-config-user-install-{{ name }}-user-present
-      - group: prometheus-config-user-install-{{ name }}-user-present
+      - user: prometheus-config-users-install-{{ name }}-user-present
+      - group: prometheus-config-users-install-{{ name }}-group-present
 
             {%- endif %}
             {%- if grains.kernel|lower == 'linux' %}
@@ -115,15 +115,19 @@ prometheus-archive-install-{{ name }}-managed-service:
         workdir: {{ p.dir.var }}/{{ name }}
         stop: ''
                {%- if name in ('node_exporter', 'consul_exporter') or 'config_file' not in p.pkg.component[name] %}
-        start: {{ p.pkg.component[name]['path'] }}/{{ name }}
+                 {%- set args = [] %}
+                 {%- for param, value in p.pkg.component.get(name).get('service').get('args', {}).items() %}
+                    {% do args.append("--" ~ param ~ "=" ~ value ) %}
+                 {%- endfor %}
+        start: {{ p.pkg.component[name]['path'] }}/{{ name }} {{ args|join(' ') }}
                {%- else %}
         start: {{ p.pkg.component[name]['path'] }}/{{ name }} --config.file {{ p.pkg.component[name]['config_file'] }}  # noqa 204
                {%- endif %}
     - require:
       - file: prometheus-archive-install-{{ name }}-file-directory
       - archive: prometheus-archive-install-{{ name }}
-      - user: prometheus-config-user-install-{{ name }}-user-present
-      - group: prometheus-config-user-install-{{ name }}-user-present
+      - user: prometheus-config-users-install-{{ name }}-user-present
+      - group: prometheus-config-users-install-{{ name }}-group-present
   cmd.run:
     - name: systemctl daemon-reload
     - require:
